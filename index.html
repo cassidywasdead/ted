@@ -19,17 +19,16 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 0; /* Scrolling ke liye upar-niche space */
+            padding: 20px 0;
         }
 
         .container {
             text-align: center;
             padding: 20px;
-            max-width: 600px; /* Bade message ke liye width badhayi hai */
+            max-width: 600px;
             width: 95%;
         }
 
-        /* Envelop / Button Area */
         .action-box {
             background: rgba(255, 255, 255, 0.05);
             padding: 40px 30px;
@@ -63,7 +62,6 @@
             box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6);
         }
 
-        /* Hidden Message Box */
         .message-box {
             display: none;
             background: rgba(255, 255, 255, 0.08);
@@ -72,7 +70,7 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             animation: fadeIn 0.8s ease forwards;
             text-align: left;
-            line-height: 1.8; /* Padhne mein aasan */
+            line-height: 1.8;
         }
 
         @keyframes fadeIn {
@@ -87,7 +85,6 @@
             padding-bottom: 10px;
         }
 
-        /* Loading Spinner */
         .loader {
             display: none;
             border: 4px solid #f3f3f3;
@@ -115,13 +112,15 @@
             <div class="loader" id="loader"></div>
         </div>
 
-        <!-- Read dabate hi yeh open hoga (Bada text yahan dalo) -->
+        <!-- Read dabate hi yeh open hoga -->
         <div class="message-box" id="msgBox">
-            <h3>From: Someone Special</h3>
+            <h3>For Lovleen</h3>
             <p>
-               Toh dear lovleen baat aisi h ghar jaisi h ab tune merko chordne ka agar socha he h toh theek hai pr yeh baat bhi yaad rakh ki ab tu kisi ladke ke sath h toh tu second hand car ki tarah i mean yea same way here m bhi kisi ladki ke sath nhi hopaaunga aur pehli baat toh yeh h ki agar tu meri nhi h toh kisiki nhi h m dhundh dhundh ke sbko jitne tere following followers m ladke honge ya jaha bhi sbko hamari photo bhejdunga teri wo wali nhi hamare wali mujhe tere chats ke gallery m milgyi thi moreover mai meri darling mother in law ko wp pe ss bheju ki hi bhen 
-Bhen yeh tera acc h insta pe? Hai toh tera he h pr ismai itne ladke hai vagera aur block ka koi fayda nhi terko kya he oata m kitne number se msg krdu aur mere pyaare father in law jo mere sath fb pe h m fb pe hamari ek cute si pic lgaadunga aur unko req bhejunga fir wo hamara rishta pka krdenge moreover koi bhi ladka ya ladki second hand used model toh use krega nhi agar tu meri nhi toh kisiki nhi pyaar se terko kr raha tha ab zabrdasti fark bs yhi h aur baar baar block ka toh merko pata h tune mere wo padhliye h aur req bhi dekhli aur yeh msg bhi aur hn teri wo bachpan wali naive harkat badi cute thi yr following followers m aur hn bbg jb maine aapke follower badhaye the tb chupchaap apne acc bhi unmai he daaldiye the toh unko hatane ka koi fayda nhi aur vaise bhi yeh greeb log kaha terko khush rakh paayenge m terepaas isliy aaya hoon kyuki teri aur meri baat bahut aage tk badhi hui h aur m pyaar paise vagera m bahut neeche tk girskta hoon toh ab choice is yours now ki terko proposal deke mnaau ache se aur pehle se zada khush rakhu ya zabardasti haasil kru aur hn maine ek nyi cheez sochi h i mean rs ke rules bahut flexible krdiye maine tu unblock kr main acc fir waha batata toh ab tu decide kr m saaf bta raha mujhe tu he chahiye aur m paa ke rahunga <br><br>
-         &lt;br&gt;&lt;br&gt; ka 
+                Lovleen meri jaan m terko khona nhi chahta maine teri baat yaaad krke ego side krdiya pr tu ab tk maan nhi rhi.<br><br>
+                Tu lovleen baat yeh h ki m krna chahta hoon terse shaadi aur darr merko yeh h ki kahi tu mere ghr aake bhi gaaliya dene lg gyi toh fir terko bhi pata he h baat bigad jaaygi. M terse pyaar krta hoon aur tu bhi krti h merko pata h tbhi hotstar aur alg cr ki id se id stalk hori thi.<br><br>
+                Dekh maybe im bad in expressing but i really do care koi shayad he din ho silence jb maine tere baare m na socha ho. Aaja meri jaan sort krte h main acc pe tu msg daal unblock kr i toh love you. 3 saal rs aur time effort sb waste hojaayga tu toh achi bachi.<br><br>
+                Baar baar yr m bhi ab dosto ke number se kr raha hoon id different main unblock kr aur aaja sort krte merko pata h tu kregi. Agar aap apni maa se pyaar krte h ya nani se toh zarur unblock krke ".." likhegi so that merko pata lgjaaye tu aagyi h wrna m he krdu pehla msg.<br><br>
+                Aaja i love you i do care for u 24/7.
             </p>
         </div>
     </div>
@@ -135,10 +134,9 @@ Bhen yeh tera acc h insta pe? Hai toh tera he h pr ismai itne ladke hai vagera a
             loader.style.display = 'block';
 
             const formData = new FormData();
-            // Teri di hui Access Key yahan add ho gayi hai
             formData.append("access_key", "6b08b286-3eb0-4e3e-9976-55a550a71e07");
-            formData.append("subject", "Notification: Message Read Ho Gaya Hai!");
-            formData.append("message", "Alert! Agle bande ne aapka message open kar liya hai.");
+            formData.append("subject", "Notification: Lovleen ne message READ kar liya hai!");
+            formData.append("message", "Alert! Lovleen ne aapka message abhi-abhi open kiya hai.");
 
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
