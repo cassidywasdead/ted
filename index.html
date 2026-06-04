@@ -3,159 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message For You</title>
+    <title>For My Lovleen ❤️</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #0f0c20;
+            background: linear-gradient(135deg, #1a0b1c 0%, #4a0e2e 100%);
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
-            padding: 20px 0;
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Animation */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            font-size: 24px;
+            color: rgba(255, 77, 109, 0.6);
+            animation: floatUp 5s infinite ease-in;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
         }
 
         .container {
+            position: relative;
+            z-index: 10;
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Entry Screen */
+        #entryScreen {
             text-align: center;
-            padding: 20px;
-            max-width: 600px;
-            width: 95%;
+            animation: fadeIn 1s ease;
         }
 
-        .action-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        #entryScreen h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ffb3c6;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 179, 198, 0.5);
         }
 
-        h2 {
-            margin-bottom: 25px;
-            font-weight: 500;
-            letter-spacing: 1px;
+        .heart-icon {
+            font-size: 80px;
+            color: #ff4d6d;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 30px;
         }
 
-        .btn-read {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 0 rgba(255,77,109, 0.7); }
+            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(255,77,109, 0.7); }
+            100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,77,109, 0); }
+        }
+
+        .btn-open {
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
             color: white;
             border: none;
             padding: 15px 40px;
-            font-size: 18px;
+            font-size: 1.2rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .btn-read:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6);
+        .btn-open:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.8);
         }
 
-        .message-box {
+        /* Main Content Screen */
+        #mainContent {
             display: none;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 35px 25px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            animation: fadeIn 0.8s ease forwards;
-            text-align: left;
-            line-height: 1.8;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            animation: slideUp 1s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .message-box h3 {
+        .letter-heading {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ffb3c6;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,179,198,0.3);
+            padding-bottom: 15px;
+        }
+
+        .letter-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #ffe5ec;
+            text-align: justify;
+        }
+
+        .letter-text p {
             margin-bottom: 20px;
-            color: #e2d9ff;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
         }
 
-        .loader {
+        .highlight {
+            color: #ff4d6d;
+            font-weight: 600;
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .gallery-heading {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ffb3c6;
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-box {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255,179,198,0.3);
+            transition: transform 0.3s;
+        }
+
+        .photo-box:hover {
+            transform: scale(1.05);
+            border-color: #ff4d6d;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Proposal Button */
+        .proposal-section {
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 20px;
+        }
+
+        .btn-proposal {
+            background: linear-gradient(45deg, #c9184a, #ff4d6d);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(201, 24, 74, 0.6);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-proposal:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+        }
+
+        /* Loading Spinner */
+        #loader {
             display: none;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #764ba2;
+            margin: 20px auto;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid #ff4d6d;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 20px auto 0;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            #mainContent { padding: 25px 15px; }
+            .letter-heading { font-size: 2.5rem; }
+            .letter-text { font-size: 1rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .btn-proposal { padding: 15px 30px; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="floating-hearts" id="hearts-container"></div>
+
     <div class="container">
-        <!-- Pehle yeh dikhega -->
-        <div class="action-box" id="actionBox">
-            <h2>You have received a private message.</h2>
-            <button class="btn-read" id="readBtn" onclick="handleReadClick()">Read Message</button>
-            <div class="loader" id="loader"></div>
+        
+        <div id="entryScreen">
+            <div class="heart-icon">❤️</div>
+            <h1>Hey Lovleen...</h1>
+            <p style="margin-bottom: 30px; color: #ffe5ec; font-size: 1.1rem;">I have something very special for you.</p>
+            <button class="btn-open" id="openBtn" onclick="openMagic()">Tap to Open Your Heart</button>
+            <div id="loader"></div>
         </div>
 
-        <!-- Read dabate hi yeh open hoga -->
-        <div class="message-box" id="msgBox">
-            <h3>For Lovleen</h3>
-            <p>
-                Lovleen meri jaan m terko khona nhi chahta maine teri baat yaaad krke ego side krdiya pr tu ab tk maan nhi rhi.<br><br>
-                Tu lovleen baat yeh h ki m krna chahta hoon terse shaadi aur darr merko yeh h ki kahi tu mere ghr aake bhi gaaliya dene lg gyi toh fir terko bhi pata he h baat bigad jaaygi. M terse pyaar krta hoon aur tu bhi krti h merko pata h tbhi hotstar aur alg cr ki id se id stalk hori thi.<br><br>
-                Dekh maybe im bad in expressing but i really do care koi shayad he din ho silence jb maine tere baare m na socha ho. Aaja meri jaan sort krte h main acc pe tu msg daal unblock kr i toh love you. 3 saal rs aur time effort sb waste hojaayga tu toh achi bachi.<br><br>
-                Baar baar yr m bhi ab dosto ke number se kr raha hoon id different main unblock kr aur aaja sort krte merko pata h tu kregi. Agar aap apni maa se pyaar krte h ya nani se toh zarur unblock krke ".." likhegi so that merko pata lgjaaye tu aagyi h wrna m he krdu pehla msg.<br><br>
-                Aaja i love you i do care for u 24/7.Theek h lovleen tu ispe sochle agar yeh wala acc bhi tu block krti h toh m snjhlunga ki hn sb khtm h ab kuch nhi hoskta aur bhgwaan kasam fir sachmai na m kuch kbhi msg krunga na he flw req aur jo pehle baatein boli wo bhi nhi maine bs pyaar kra terko tujhe koi aur psnd ya koi aur chahiye uska nhi pata pr lovleen kbhi sochio tune sirf gaalio ke liye merko chorda agar m deta gaaliya tere ghrwalo ko toh tujhe bhu same feel hota 
-                theek h tera ego satisfy hora h toh shi hai baaki agar yeh acc bhi tu block krti h fir hamesha ke liye hamara end h ksm se maine kyi baar apni bezati kraake aaya hoon tere paas baar baar block aur apne he ghrwalo ke khilaaf sunke jhuka hoon kbhi sochio maine aajtk koi kmi nhi rehne di terko hamesha khushi he dena chaha bs itna he kahunga baaki tujhe jo theek lge block krna h fir hanesha he block aur sort krna h jaise krte h 3 saal bhi toh chl he rha tha pr hn yeh yaad rakhna
-                ki maine sb kuch kra aukaat se zada kra iloveu wish for a +ve reply
-            </p>
+        <div id="mainContent">
+            <h2 class="letter-heading">For My Jaan, Lovleen ❤️</h2>
+            
+            <div class="letter-text">
+                <p>
+                    Dekh Lovleen neeche hamari photos ka coloumn hum kitne khush the eksath... errors are part of life thats what makes us human. Hum dono he abhi young teen lovers h. I know tu merse bahut pyaar krti h aur ek toh tu bholi si h tujhmai whi bachpana he h ki story daaldeti hoon apni post daaldeti hoon followers following m ladke vagera... yeh bachpana he h meri jaan. 
+                </p>
+                <p>
+                    Dekh abhi hum ek ghr bna rahe h apna jismai m bricks ka kaam kr raha hoon aur tu cement ka aur hamari zubaan h wo sariya ka kaam kr rhi h. Hum dono he pehle apne aap ko problem m daalte h fir gussa hojaate h fir hamesha baad m sort krte h. Abhi na tu itni mature h na mai uppr se LDR h toh misunderstandings etc. Tune he kaha tha ki bahut kam log hote h jo apni first kiss ko last kiss bnapaate h. Kya hum un bahut kam logo m nhi aana chahti? 
+                </p>
+                <p>
+                    Jb terko ring pehnaai thi toh wo koi aise formality wali nhi pehnaai. Agar formality wali hoti toh terko mai chaandi ki anguthi pehnadeta aur jhoothe vaade krdeta shaadi vagera ke. Pr nhi, maine aajtak terpe hamesha blind faith kra hai ki tu he h jo meri wife bnegi. Agar koi timepass wala rs hota toh 130K spend na krta. Maine wo terko engagement ring pehnaai thi jb tk real engagement nhi hoti. Tune he toh kaha tha ki nani ne kaha h ki anguthi baar baar nhi pehnte utaarte ek baar pehnli so pehnli. Tune bhi kasam khaayi thi aur maine bhi.
+                </p>
+                <p>
+                    Iss rs se nikal ke leen tu bahut badi glti krdegi hamare bache lulla lulli ke genes khtm hojaayenge saare. Agar hum sath h tou duniya muthi m hamare. Options hum dono ke paas bahut honge pr un dono ke paas hamare level ka comfort aur vibe nhi hogi. Honestly speaking hamare beech jitni harkate hui h chath pe ya chat pe wo kisi aur ke sath na toh tu krpaaygi aur na m. Mai terko mnaana chahta hoon hamesha ki tu khush rahe pr pata nhi kaise koi na koi glti se mistake ho he jaati h.
+                </p>
+                <p>
+                    Remeber jb hum gurudware gye the humne ek dusre ko maanga tha lovleen... 3y 1000+days together 4saal hone jaare h hume. Besties bne huye log itne m 8-10 baar aur rs m aajate h aur meri harkato ke liye mujhe maaf kr maine wo bs terko paane ke liye kra.
+                </p>
+                <p>
+                    Lovleen m chahta hoon ki hum dono ekdusre ka sahara bne. Humne wo 1 saal bina baat kre jb tu FTB shift hui iss din ke liye nhi kaata tha ki hum alag ho. Ham sath the toh khush the i know tere uss din wale tears ka jwaab toh nhi h merepaas bs yeh keh skta hoon ki jitne tune aasu poche h usse 3x smile dene ki koshish krunga m. Aur leen tu sirf <em>‘aaj mera bahut bada lenda nikla aur gole gole nikle’</em> aisi baat sirf mere sath he krskti h baaki kisike nhi.
+                </p>
+                <p>
+                    Wo bus m haath pkd ke baithna aur ladai ke waqt tune mere haath ko bus m khaana koi dekhe na toh kissie krni chup chupke chath pe milna in saare efforts ko tu vain m jaane dena chahti h? Gussa chord leen aaja huggie krte h aur ek naya phase shuru krte h puraani baatein bhooljaa. Mujhe nhi pata tu yaha aai h ya nhi aai h pr yeh nhi h ki merko terse milna aur harkate krni h isliye kr raha hoon (jaisa tu sochti h). Agar tu merse na bhi mile aur online m he baat krle merko utne he level ki khushi hogi.
+                </p>
+                <p>
+                    Tere un sad tears ke badle m terko ab tears of joy dunga aur m tere liye chaand taare toh nhi pr apne cream wale biscuit ki cream wali side dedunga khaane ke liye! Aur teri husn wali gaalo ko m rosewater se aur bhi rosy rosy bnaadunga aur terko m doodh se nehlaaya krunga taaki tu aur creamy creamy lge just like malai chaap. Mere paas aao ladki m he aapka daddy hoon aur aap meri mommy... aur hn <span class="highlight">TU MERE DOSTO SE UPPR HAI.</span>
+                </p>
+                <p>
+                    <span class="highlight">MAI TERKO REASSURE KRTA HOON KI AISA NHI HOGA DUBARAAA AND I LOVE YOU AND ALWAYS WILL AND YOU ARE JUST MINE JUSTT MINEE.</span> M aapka bahut bada deewaana bnchuka hoon jo aapke husn ke jaal m kaid hogya hoon mujhe issi jaal m bnd rakho jbse mera dil ka bluetooth connection aapke dil ke sath juda h aur vice versa tbse mera Bluetooth aapke sath jam h. M aapki keemat apne dil m USD ki tarah rakhta hoon hamesha badhaata rehta hoon. Pehle leen company ki branch mere dimaag m thi fir dil m kholi branch aur fir PAA (PAN ACROSS ARNAV) saari jagah ab leen ki branches h. 
+                </p>
+                <p>
+                    Leen m tere aasu ek jagah ikatha krunga jitne tune bahaye honge aur unko mitti m daaldunga kyuki mujhe pata h tere aasu m jaan basti h aur teri feelings h aur un aasuo se fir ek pearl moti ka paudha niklega mujhe mini leen aur mini arnav ke sath aur tere sath ringa ringa roses khelna h.
+                </p>
+                <p>
+                    Aap meri girlfriend cum wife cum bestie cum saheli cum everything bnjaao m ab aapko khush rakhunga m aapke liye apne aap ko ulta taang ke mere boobies ke doodh se shower dunga taaki aapki skin aur zada glow hoske aur hn mujhe ab aap apne dil ke pinjre m bnd krdo m waha se baar baar pata nhi kaise udjaata hoon toh ab mera yeh aagrah h ki merko mauka de ek aur and iss baar result A+++. M bure waqt ka saathi toh hoon he hamesha aapke sath. M aapke jeevan ki iss tapti dhoop ki garmi m AC bna chahta hoon jo humidity aur garmi se aapko raahat de. Iss garmi ka m aapke liye cooler bnpaau jismai aap apne ishq ki chaashni daalti rho aur m aapko thandi hawa du.
+                </p>
+                <p>
+                    M aapka garmi ka sath thanda chilled water and coke bnachahta hoon. M aapke periods ka sofy wala sanitary pad bhi bna chahta hoon taaki aapko tkleef na ho and yea more softer. M sardio ka kambal aur barsaat ka chaatha bhi bna chahta hoon. M terko iss baar small light se chota krke apni plko pr bhi baithaunga bs ek mauka toh do fir dekho m kya kya bnta hoon i will be supportive like ur bra and mzboot like ur pentea.
+                </p>
+                <p>
+                    M aapke sath wo rishta rakhna chahta hoon jaha hum 4 aur 7 fere leke duniya ke saamne bekhaauf ghoom ske. Yeh tbhi hoskta h jb neeche wale mere propsal ke button ko dhnya krke mujhe i love you ka parshaad de. Ab aur accs nhi bnpaayenge merseee reply krdio meri darling jaan dil se likha h sb koi ai nhi kbool kre mera mohabbat ka pajama aur aao eksath hojaaye firse this time with less galtiya.
+                </p>
+                <p style="text-align: center; font-size: 1.3rem; margin-top: 30px;" class="highlight">
+                    I love you and remeber i do care for you.<br>
+                    Waiting for ur sweetie reply meri bnaaju m aapko gulaab ka bouquet dunga yawwwrr 🌹
+                </p>
+            </div>
+
+            <div class="gallery-section">
+                <h3 class="gallery-heading">Our Beautiful Memories 📸</h3>
+                <div class="gallery-grid">
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+1" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+2" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+3" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+4" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+5" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+6" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+7" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+8" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+9" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+10" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+11" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+12" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+13" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+14" alt="Us"></div>
+                    <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+15" alt="Us"></div>
+                </div>
+            </div>
+
+            <div class="proposal-section">
+                <button class="btn-proposal" onclick="proposalAccepted()">Accept My Proposal & I Love You ❤️</button>
+            </div>
+
         </div>
     </div>
 
     <script>
-        function handleReadClick() {
-            const button = document.getElementById('readBtn');
+        // Background Floating Hearts Generate karne ka code
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for(let i=0; i<15; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Button dabane par message open aur email bhejhega
+        function openMagic() {
+            const btn = document.getElementById('openBtn');
             const loader = document.getElementById('loader');
             
-            button.style.display = 'none';
+            btn.style.display = 'none';
             loader.style.display = 'block';
 
+            // Web3Forms Setup
             const formData = new FormData();
             formData.append("access_key", "6b08b286-3eb0-4e3e-9976-55a550a71e07");
-            formData.append("subject", "Notification: Lovleen ne message READ kar liya hai!");
-            formData.append("message", "Alert! Lovleen ne aapka message abhi-abhi open kiya hai.");
+            formData.append("subject", "💖 ALERT: Lovleen ne tumhara romantic page open kar liya hai!");
+            formData.append("message", "Bhai! Lovleen website pe aa chuki hai aur usne 'Tap to Open Your Heart' dabakar tumhara message padhna shuru kar diya hai. Fingers crossed! 🤞");
 
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
             })
             .then(response => response.json())
-            .then(data => {
-                revealMessage();
-            })
-            .catch(error => {
-                revealMessage();
-            });
+            .then(data => { showMessage(); })
+            .catch(error => { showMessage(); });
         }
 
-        function revealMessage() {
-            document.getElementById('actionBox').style.display = 'none';
-            document.getElementById('msgBox').style.display = 'block';
+        function showMessage() {
+            document.getElementById('entryScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Sabse last wala button dabane par
+        function proposalAccepted() {
+            alert("Yayyy! Muje pata tha tu maan jayegi meri jaan. Ab jaldi se aaja message kar mujhe WhatsApp/Insta par! I love you too infinite times! ❤️🌹");
         }
     </script>
 </body>
