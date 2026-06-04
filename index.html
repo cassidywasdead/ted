@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Lovleen ❤️</title>
+    <title>Secure Access Gateway</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
@@ -14,14 +14,15 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a0b1c 0%, #4a0e2e 100%);
+            background: #0d0d0d; /* Sober Dark Background */
             color: #fff;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 1s ease;
         }
 
-        /* Floating Hearts Animation */
+        /* Floating Hearts Animation (Hidden initially) */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -59,79 +60,75 @@
             min-height: 100vh;
         }
 
-        /* Entry Screen */
+        /* SOBER ENTRY SCREEN CSS */
         #entryScreen {
             text-align: center;
+            background: #151515;
+            padding: 50px 40px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             animation: fadeIn 1s ease;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-
-        #entryScreen h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #ffb3c6;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255, 179, 198, 0.5);
-        }
-
-        .heart-icon {
-            font-size: 70px;
-            color: #ff4d6d;
-            animation: pulse 1.5s infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); text-shadow: 0 0 0 rgba(255,77,109, 0.7); }
-            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(255,77,109, 0.7); }
-            100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,77,109, 0); }
-        }
-
-        .password-input {
             width: 100%;
-            max-width: 250px;
-            padding: 12px 20px;
-            margin: 20px 0;
-            border-radius: 30px;
-            border: 2px solid #ff4d6d;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            font-size: 1.1rem;
+            max-width: 450px;
+        }
+
+        .guvnor-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .sober-subtitle {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .password-input-sober {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0 25px 0;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #000;
+            color: #fff;
+            font-size: 1.2rem;
             text-align: center;
             outline: none;
             font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
         }
 
-        .password-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+        .password-input-sober::placeholder {
+            color: #555;
+            letter-spacing: 1px;
         }
 
-        .btn-theme {
-            background: linear-gradient(45deg, #ff4d6d, #ff758f);
-            color: white;
+        .btn-sober {
+            background: #fff;
+            color: #000;
             border: none;
             padding: 15px 40px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 50px;
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            margin-top: 10px;
+            width: 100%;
         }
 
-        .btn-theme:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.8);
+        .btn-sober:hover {
+            background: #ccc;
         }
 
-        /* Main Content Screen */
+        /* Main Content Screen (Romantic) */
         #mainContent {
             display: none;
             width: 100%;
@@ -226,7 +223,26 @@
             object-fit: cover;
         }
 
-        /* Proposal Area */
+        /* Buttons & Proposal Area */
+        .btn-theme {
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-theme:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.8);
+        }
+
         .proposal-section {
             text-align: center;
             margin-top: 50px;
@@ -266,11 +282,11 @@
         #loader {
             display: none;
             margin: 20px auto;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-top: 4px solid #ff4d6d;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #fff;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             animation: spin 1s linear infinite;
         }
 
@@ -292,19 +308,17 @@
 
     <div class="container">
         
-        <!-- Entry Screen with Password -->
+        <!-- SOBER Entry Screen -->
         <div id="entryScreen">
-            <div class="heart-icon">❤️</div>
-            <h1>Hey Lovleen...</h1>
-            <p style="color: #ffe5ec; font-size: 1.1rem;">To open my heart, enter our special date.</p>
+            <h1 class="guvnor-title">Welcome back to the guvnor</h1>
+            <p class="sober-subtitle">Surprise inside. Scratch password.</p>
             
-            <input type="password" id="passInput" class="password-input" placeholder="DD/MM">
-            <br>
-            <button class="btn-theme" id="openBtn" onclick="verifyPassword()">Open For Magic</button>
+            <input type="password" id="passInput" class="password-input-sober" placeholder="Enter Code">
+            <button class="btn-sober" id="openBtn" onclick="verifyPassword()">Access</button>
             <div id="loader"></div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main Content (Romantic reveal) -->
         <div id="mainContent">
             <h2 class="letter-heading">For My Jaan, Lovleen ❤️</h2>
             
@@ -354,7 +368,6 @@
                 </p>
             </div>
 
-            <!-- View Photos Button -->
             <div style="text-align: center; margin-top: 30px;" id="showPhotosBtnDiv">
                 <button class="btn-theme" onclick="showPhotos()">Click to View Our Memories 📸</button>
             </div>
@@ -363,7 +376,6 @@
             <div id="photoGallery" class="gallery-section">
                 <h3 class="gallery-heading">Our Beautiful Memories 📸</h3>
                 <div class="gallery-grid">
-                    <!-- YAHAN APNI PHOTOS KE LINKS DAALNE HAIN -->
                     <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+1" alt="Us"></div>
                     <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+2" alt="Us"></div>
                     <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+3" alt="Us"></div>
@@ -395,10 +407,9 @@
     </div>
 
     <script>
-        // Web3Forms Global Access Key
         const ACCESS_KEY = "6b08b286-3eb0-4e3e-9976-55a550a71e07";
 
-        // Background Hearts
+        // Generate hearts, but they will only show after background change
         function createHearts() {
             const container = document.getElementById('hearts-container');
             for(let i=0; i<15; i++) {
@@ -411,9 +422,7 @@
                 container.appendChild(heart);
             }
         }
-        createHearts();
 
-        // Helper Function to Send Email Silently
         function sendEmailNotification(subject, message, callback) {
             const formData = new FormData();
             formData.append("access_key", ACCESS_KEY);
@@ -430,7 +439,6 @@
             });
         }
 
-        // TRIGGER 1: Password Check
         function verifyPassword() {
             const pass = document.getElementById('passInput').value.trim();
             
@@ -439,49 +447,49 @@
                 document.getElementById('passInput').style.display = 'none';
                 document.getElementById('loader').style.display = 'block';
 
-                // Send email then show letter
                 sendEmailNotification(
                     "💖 STAGE 1: Lovleen entered the Password!", 
-                    "Password correct nikla! Usne '25/03' daala aur ab wo tumhara letter padh rahi hai.",
+                    "Usne sahi password (25/03) daala aur tumhara letter padhna shuru kar diya hai.",
                     function() {
+                        // Change background to romantic theme
+                        document.body.style.background = "linear-gradient(135deg, #1a0b1c 0%, #4a0e2e 100%)";
+                        
                         document.getElementById('entryScreen').style.display = 'none';
                         document.getElementById('mainContent').style.display = 'block';
+                        
+                        // Start hearts animation now
+                        createHearts();
+                        
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 );
             } else {
-                alert("Nahi meri jaan, hamari special date daal (DD/MM) format mein!");
-                document.getElementById('passInput').value = ""; // Clear the wrong password
+                alert("Incorrect code. Access Denied.");
+                document.getElementById('passInput').value = "";
             }
         }
 
-        // TRIGGER 2: Show Photos
         function showPhotos() {
             document.getElementById('showPhotosBtnDiv').style.display = 'none';
             document.getElementById('photoGallery').style.display = 'block';
             document.getElementById('proposalSection').style.display = 'block';
             
-            // Scroll a bit down to show photos smoothly
             window.scrollBy({ top: 300, behavior: 'smooth' });
 
-            // Send silent email notification
             sendEmailNotification(
                 "📸 STAGE 2: Lovleen is viewing Photos!", 
-                "Usne letter pura padh liya hai aur ab 'View Memories' pe click karke tumhari photos dekh rahi hai.",
+                "Usne 'View Memories' pe click karke tumhari photos dekhni shuru kar di hain.",
                 null
             );
         }
 
-        // TRIGGER 3: Proposal Reply
         function proposalReply(replyType) {
-            // Send silent email notification
             sendEmailNotification(
                 "💍 STAGE 3: Lovleen ne PROPOSAL ka reply kar diya!", 
-                `Usne is button par click kiya hai: "${replyType}" 🎉🎉 Jaldi se use message kar!`,
+                `Usne "${replyType}" wale button pe click kiya hai! 🎉 jaldi message kar usko!`,
                 null
             );
 
-            // Show cute alert to her
             if(replyType === "I love you more") {
                 alert("Yayyy! Muje pata tha tu 'I love you more' hi chunegi meri jaan! Ab jaldi aaja message kar, I am waiting! ❤️🌹");
             } else {
