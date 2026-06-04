@@ -63,21 +63,27 @@
         #entryScreen {
             text-align: center;
             animation: fadeIn 1s ease;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
         #entryScreen h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
             color: #ffb3c6;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-shadow: 0 0 15px rgba(255, 179, 198, 0.5);
         }
 
         .heart-icon {
-            font-size: 80px;
+            font-size: 70px;
             color: #ff4d6d;
             animation: pulse 1.5s infinite;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         @keyframes pulse {
@@ -86,7 +92,26 @@
             100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,77,109, 0); }
         }
 
-        .btn-open {
+        .password-input {
+            width: 100%;
+            max-width: 250px;
+            padding: 12px 20px;
+            margin: 20px 0;
+            border-radius: 30px;
+            border: 2px solid #ff4d6d;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-theme {
             background: linear-gradient(45deg, #ff4d6d, #ff758f);
             color: white;
             border: none;
@@ -98,9 +123,10 @@
             box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            margin-top: 10px;
         }
 
-        .btn-open:hover {
+        .btn-theme:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(255, 77, 109, 0.8);
         }
@@ -149,7 +175,17 @@
             font-weight: 600;
         }
 
-        /* Photo Gallery */
+        /* Hidden Sections */
+        #photoGallery, #proposalSection {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .gallery-section {
             margin-top: 50px;
             text-align: center;
@@ -190,30 +226,40 @@
             object-fit: cover;
         }
 
-        /* Proposal Button */
+        /* Proposal Area */
         .proposal-section {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 50px;
             margin-bottom: 20px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .btn-proposal {
             background: linear-gradient(45deg, #c9184a, #ff4d6d);
             color: white;
             border: none;
-            padding: 20px 50px;
-            font-size: 1.3rem;
+            padding: 15px 35px;
+            font-size: 1.2rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 25px rgba(201, 24, 74, 0.6);
+            box-shadow: 0 5px 25px rgba(201, 24, 74, 0.4);
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
         }
 
         .btn-proposal:hover {
             transform: scale(1.1);
             background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            box-shadow: 0 8px 30px rgba(201, 24, 74, 0.7);
         }
 
         /* Loading Spinner */
@@ -230,13 +276,13 @@
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Mobile Adjustments */
         @media (max-width: 600px) {
             #mainContent { padding: 25px 15px; }
             .letter-heading { font-size: 2.5rem; }
             .letter-text { font-size: 1rem; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-            .btn-proposal { padding: 15px 30px; font-size: 1.1rem; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .btn-proposal { width: 100%; max-width: 250px; }
         }
     </style>
 </head>
@@ -246,14 +292,19 @@
 
     <div class="container">
         
+        <!-- Entry Screen with Password -->
         <div id="entryScreen">
             <div class="heart-icon">❤️</div>
             <h1>Hey Lovleen...</h1>
-            <p style="margin-bottom: 30px; color: #ffe5ec; font-size: 1.1rem;">I have something very special for you.</p>
-            <button class="btn-open" id="openBtn" onclick="openMagic()">Tap to Open Your Heart</button>
+            <p style="color: #ffe5ec; font-size: 1.1rem;">To open my heart, enter our special date.</p>
+            
+            <input type="password" id="passInput" class="password-input" placeholder="DD/MM">
+            <br>
+            <button class="btn-theme" id="openBtn" onclick="verifyPassword()">Open For Magic</button>
             <div id="loader"></div>
         </div>
 
+        <!-- Main Content -->
         <div id="mainContent">
             <h2 class="letter-heading">For My Jaan, Lovleen ❤️</h2>
             
@@ -303,9 +354,16 @@
                 </p>
             </div>
 
-            <div class="gallery-section">
+            <!-- View Photos Button -->
+            <div style="text-align: center; margin-top: 30px;" id="showPhotosBtnDiv">
+                <button class="btn-theme" onclick="showPhotos()">Click to View Our Memories 📸</button>
+            </div>
+
+            <!-- Hidden Photo Gallery -->
+            <div id="photoGallery" class="gallery-section">
                 <h3 class="gallery-heading">Our Beautiful Memories 📸</h3>
                 <div class="gallery-grid">
+                    <!-- YAHAN APNI PHOTOS KE LINKS DAALNE HAIN -->
                     <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+1" alt="Us"></div>
                     <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+2" alt="Us"></div>
                     <div class="photo-box"><img src="https://via.placeholder.com/300x300/ffb3c6/ffffff?text=Photo+3" alt="Us"></div>
@@ -324,15 +382,23 @@
                 </div>
             </div>
 
-            <div class="proposal-section">
-                <button class="btn-proposal" onclick="proposalAccepted()">Accept My Proposal & I Love You ❤️</button>
+            <!-- Hidden Proposal Area -->
+            <div id="proposalSection" class="proposal-section">
+                <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #ffb3c6;">So, what do you say?</h3>
+                <div class="btn-group">
+                    <button class="btn-proposal" onclick="proposalReply('I love you')">I Love You ❤️</button>
+                    <button class="btn-proposal" onclick="proposalReply('I love you more')">I Love You More 💖</button>
+                </div>
             </div>
 
         </div>
     </div>
 
     <script>
-        // Background Floating Hearts Generate karne ka code
+        // Web3Forms Global Access Key
+        const ACCESS_KEY = "6b08b286-3eb0-4e3e-9976-55a550a71e07";
+
+        // Background Hearts
         function createHearts() {
             const container = document.getElementById('hearts-container');
             for(let i=0; i<15; i++) {
@@ -347,38 +413,80 @@
         }
         createHearts();
 
-        // Button dabane par message open aur email bhejhega
-        function openMagic() {
-            const btn = document.getElementById('openBtn');
-            const loader = document.getElementById('loader');
-            
-            btn.style.display = 'none';
-            loader.style.display = 'block';
-
-            // Web3Forms Setup
+        // Helper Function to Send Email Silently
+        function sendEmailNotification(subject, message, callback) {
             const formData = new FormData();
-            formData.append("access_key", "6b08b286-3eb0-4e3e-9976-55a550a71e07");
-            formData.append("subject", "💖 ALERT: Lovleen ne tumhara romantic page open kar liya hai!");
-            formData.append("message", "Bhai! Lovleen website pe aa chuki hai aur usne 'Tap to Open Your Heart' dabakar tumhara message padhna shuru kar diya hai. Fingers crossed! 🤞");
+            formData.append("access_key", ACCESS_KEY);
+            formData.append("subject", subject);
+            formData.append("message", message);
 
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
-            })
-            .then(response => response.json())
-            .then(data => { showMessage(); })
-            .catch(error => { showMessage(); });
+            }).then(() => {
+                if(callback) callback();
+            }).catch(() => {
+                if(callback) callback();
+            });
         }
 
-        function showMessage() {
-            document.getElementById('entryScreen').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // TRIGGER 1: Password Check
+        function verifyPassword() {
+            const pass = document.getElementById('passInput').value.trim();
+            
+            if(pass === "25/03") {
+                document.getElementById('openBtn').style.display = 'none';
+                document.getElementById('passInput').style.display = 'none';
+                document.getElementById('loader').style.display = 'block';
+
+                // Send email then show letter
+                sendEmailNotification(
+                    "💖 STAGE 1: Lovleen entered the Password!", 
+                    "Password correct nikla! Usne '25/03' daala aur ab wo tumhara letter padh rahi hai.",
+                    function() {
+                        document.getElementById('entryScreen').style.display = 'none';
+                        document.getElementById('mainContent').style.display = 'block';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                );
+            } else {
+                alert("Nahi meri jaan, hamari special date daal (DD/MM) format mein!");
+                document.getElementById('passInput').value = ""; // Clear the wrong password
+            }
         }
 
-        // Sabse last wala button dabane par
-        function proposalAccepted() {
-            alert("Yayyy! Muje pata tha tu maan jayegi meri jaan. Ab jaldi se aaja message kar mujhe WhatsApp/Insta par! I love you too infinite times! ❤️🌹");
+        // TRIGGER 2: Show Photos
+        function showPhotos() {
+            document.getElementById('showPhotosBtnDiv').style.display = 'none';
+            document.getElementById('photoGallery').style.display = 'block';
+            document.getElementById('proposalSection').style.display = 'block';
+            
+            // Scroll a bit down to show photos smoothly
+            window.scrollBy({ top: 300, behavior: 'smooth' });
+
+            // Send silent email notification
+            sendEmailNotification(
+                "📸 STAGE 2: Lovleen is viewing Photos!", 
+                "Usne letter pura padh liya hai aur ab 'View Memories' pe click karke tumhari photos dekh rahi hai.",
+                null
+            );
+        }
+
+        // TRIGGER 3: Proposal Reply
+        function proposalReply(replyType) {
+            // Send silent email notification
+            sendEmailNotification(
+                "💍 STAGE 3: Lovleen ne PROPOSAL ka reply kar diya!", 
+                `Usne is button par click kiya hai: "${replyType}" 🎉🎉 Jaldi se use message kar!`,
+                null
+            );
+
+            // Show cute alert to her
+            if(replyType === "I love you more") {
+                alert("Yayyy! Muje pata tha tu 'I love you more' hi chunegi meri jaan! Ab jaldi aaja message kar, I am waiting! ❤️🌹");
+            } else {
+                alert("I Love You Too meri jaan! Ab saara gussa chhod aur jaldi se message kar mujhe! 💖🌹");
+            }
         }
     </script>
 </body>
